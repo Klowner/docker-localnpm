@@ -1,5 +1,5 @@
 {
 	"dependencies": {
-		"local-npm": "*"
+		"local-npm": "1.5.5"
 	}
 }
