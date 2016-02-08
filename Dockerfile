@@ -7,4 +7,4 @@ ADD . /app/
 EXPOSE 5080
 VOLUME ["/data"]
 
-CMD ["./node_modules/.bin/local-npm", "-d /data"]
+CMD ["./node_modules/.bin/local-npm", "-d", "/data"]
