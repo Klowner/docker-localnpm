@@ -1,3 +1,6 @@
+TAG=klowner/local-npm
+REV=latest
+
 all: build
 
 foo:
@@ -9,5 +12,8 @@ deps:
 	@docker run --rm -v ${PWD}:/app -w /app iron/node:dev npm dedupe
 
 build: deps
-	@docker build --tag=klowner/localnpm:latest .
+	@docker build --tag=${TAG}:${REV} .
+
+push: build
+	@docker push ${TAG}:${REV}
 
