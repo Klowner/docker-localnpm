@@ -1,4 +1,3 @@
-[![Docker Repository on Quay](https://quay.io/repository/klowner/local-npm/status "Docker Repository on Quay")](https://quay.io/repository/klowner/local-npm)
 # [local-npm](https://github.com/nolanlawson/local-npm) for Docker
 [local-npm](https://github.com/nolanlawson/local-npm) in iron.io's very small iron/node
 
