@@ -1,22 +1,21 @@
-TAG=klowner/local-npm
-REV=latest
-DEV_TAG=4.2-dev
+REPO=klowner/local-npm
+REV=$(shell egrep -o "([0-9]\.*)+" package.json)
 
 all: build
 
-foo:
-	@echo ${UID} ${PWD}
+deps:
+	@docker pull iron/node
+	@docker pull iron/node:dev
+	@docker run --rm -v ${PWD}:/app -w /app iron/node:dev npm install --no-progress
+	@docker run --rm -v ${PWD}:/app -w /app iron/node:dev npm dedupe
 
-node_modules:
-	@docker pull iron/node:${DEV_TAG}
-	@docker run --rm -v ${PWD}:/app -w /app iron/node:${DEV_TAG} npm install
-	@docker run --rm -v ${PWD}:/app -w /app iron/node:${DEV_TAG} npm dedupe
-
-build: node_modules
-	@docker build --tag=${TAG}:${REV} .
+build: deps
+	@docker build --tag=${REPO}:${REV} .
+	@docker build --tag=${REPO}:latest .
 
 push: build
-	@docker push ${TAG}:${REV}
+	@docker push ${REPO}:${REV}
+	@docker push ${REPO}:latest
 
 clean:
 	@sudo rm -rf node_modules
