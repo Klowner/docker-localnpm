@@ -4,7 +4,7 @@ REV=$(shell egrep -o "([0-9]\.*)+" package.json)
 all: build
 
 deps:
-	@docker pull iron/node
+	@docker pull iron/node:latest
 	@docker pull iron/node:dev
 	@docker run --rm -v ${PWD}:/app -w /app iron/node:dev npm install --no-progress
 	@docker run --rm -v ${PWD}:/app -w /app iron/node:dev npm dedupe

@@ -1,4 +1,4 @@
-FROM iron/node:4.2.3
+FROM iron/node:latest
 MAINTAINER Mark Riedesel <mark@klowner.com>
 
 WORKDIR /app
